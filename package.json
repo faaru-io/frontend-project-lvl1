@@ -1,9 +1,12 @@
 {
-  "name": "frontend-project-lvl1",
+  "name": "faaru-frontend-project-lvl1",
   "version": "1.0.0",
   "description": "project level 1 - js",
   "main": "src/index.js",
   "type": "module",
+  "bin": {
+    "brain-games": "bin/brain-games.js"
+  },
   "scripts": {
     "test": "tests"
   },
