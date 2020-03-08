@@ -1,14 +1,14 @@
+---
+
 # https://eslint.org/docs/user-guide/configuring#specifying-environments
 env:
+  browser: false
   node: true
   jest: true
 
-# https://github.com/babel/babel-eslint
-parser: babel-eslint
-
 extends:
   - 'airbnb-base'
-  - 'plugin:jest/recommended'
+  - 'eslint:recommended'
 
 rules:
   no-console: 0
