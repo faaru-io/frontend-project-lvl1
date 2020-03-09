@@ -10,6 +10,8 @@ This repository is created and maintained by FAAru, an educational project.
 
 ## Setup
 
+[![Setup](https://asciinema.org/a/DlN0niViCZSx09wRnFW0zrDqQ)](https://asciinema.org/a/DlN0niViCZSx09wRnFW0zrDqQ)
+
 ```sh
 $ make install
 ```
