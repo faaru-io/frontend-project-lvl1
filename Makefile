@@ -12,3 +12,8 @@ lint:
 
 brain-even:
 	npx node bin/brain-even.js
+
+brain-games:
+	node bin/brain-games.js
+
+
