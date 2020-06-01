@@ -25,3 +25,7 @@ $ make test
 ## Run brain-calc
 
 [![Start...](asciinema/tmp8mdhvl5i-ascii.cast)](asciinema/tmp8mdhvl5i-ascii.cast)
+
+## Run brain-gcd
+
+[![Start...](https://asciinema.org/a/skGTlWy728qg4Pnc8J3yoqyFH)](https://asciinema.org/a/skGTlWy728qg4Pnc8J3yoqyFH)

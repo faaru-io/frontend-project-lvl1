@@ -1,6 +1,9 @@
 install:
 	npm install
 
+link:
+	npm link
+
 start:
 	npx node bin/brain-games.js
 
@@ -18,3 +21,6 @@ brain-games:
 
 brain-calc:
 	npx node bin/brain-calc.js
+
+brain-gcd:
+        npx node bin/brain-gcd.js
