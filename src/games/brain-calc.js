@@ -1,12 +1,7 @@
-import readlineSync from 'readline-sync';
-import pair from '@hexlet/pairs';
+import { getGameContainer } from '../game-api.js';
 import { generateNumber } from '../number/number.js';
 
-const { cons } = pair;
-
 const MAX_NUMBER = 100;
-const STATUS_CORRECT = true;
-const STATUS_INCORRECT = false;
 
 const getOperation = (collOperations) => {
   const indexOperation = Math.floor(Math.random() * Math.floor(collOperations.length));
@@ -28,44 +23,23 @@ const calc = (op, a, b) => {
   return null;
 };
 
-const generateExpression = () => {
+const getQuestionText = () => (
+  'What is the result of the expression?'
+);
+
+const prepareQuestionPair = () => {
   const numberA = generateNumber(MAX_NUMBER);
   const numberB = generateNumber(MAX_NUMBER);
   const op = getOperation(['+', '-', '*']);
 
-  const exp = `${numberA} ${op} ${numberB}`;
-  const result = calc(op, numberA, numberB);
+  const expression = `${numberA} ${op} ${numberB}`;
+  const answer = calc(op, numberA, numberB);
 
-  return [exp, result];
+  return [expression, String(answer)];
 };
 
-const generateQuestion = () => {
-  const [question, correctAnswer] = generateExpression();
-  console.log('What is the result of the expression?');
-  console.log(`Question: ${question}`);
+export default () => {
+  const [expression, answer] = prepareQuestionPair();
 
-  return correctAnswer;
-};
-
-const getUserAnswer = () => (
-  Number(readlineSync.question('Your answer:'))
-);
-
-const checkAnswer = (correct, answer) => (
-  correct === answer ? STATUS_CORRECT : STATUS_INCORRECT
-);
-
-const getGame = () => (
-  cons('brain-calc', [
-    cons('generateQuestion', generateQuestion),
-    cons('getUserAnswer', getUserAnswer),
-    cons('checkAnswer', checkAnswer),
-  ])
-);
-
-export {
-  getGame,
-  generateQuestion,
-  getUserAnswer,
-  checkAnswer,
+  return getGameContainer(getQuestionText(), expression, answer);
 };

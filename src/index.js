@@ -1,5 +1,6 @@
+import readlineSync from 'readline-sync';
 import greeting from './cli.js';
-import { generateQuestion, getUserAnswer, checkAnswer } from './game-dispatcher.js';
+import { getQuestionText, getQuestionExpression, getCorrectAnswer } from './game-api.js';
 
 const SHOTS = 3;
 const STATUS_CORRECT = true;
@@ -12,10 +13,29 @@ const gameOver = (name, answer, correct) => {
   console.log(`Let's try again, ${name}!`);
 };
 
+const showQuestion = (gameContainer) => {
+  const questionText = getQuestionText(gameContainer);
+  const questionExpression = getQuestionExpression(gameContainer);
+  console.log(questionText);
+  console.log(`Question: ${questionExpression}`);
+};
+
+const getUserAnswer = () => (
+  readlineSync.question('Your answer:')
+);
+
+const checkAnswer = (correctAnswer, answer) => (
+  correctAnswer === answer ? STATUS_CORRECT : STATUS_INCORRECT
+);
+
 const play = (game, gamer) => {
-  const correctAnswer = generateQuestion(game);
-  const gamerAnswer = getUserAnswer(game);
-  const status = checkAnswer(game, correctAnswer, gamerAnswer);
+  const gameContainer = game();
+
+  showQuestion(gameContainer);
+
+  const correctAnswer = getCorrectAnswer(gameContainer);
+  const gamerAnswer = getUserAnswer();
+  const status = checkAnswer(correctAnswer, gamerAnswer);
 
   if (status === STATUS_CORRECT) {
     success();

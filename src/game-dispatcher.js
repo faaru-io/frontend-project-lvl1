@@ -1,3 +1,4 @@
+/* deprecated */
 import pair from '@hexlet/pairs';
 
 const { car, cdr } = pair;
