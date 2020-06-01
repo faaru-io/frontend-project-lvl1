@@ -21,3 +21,7 @@ $ make install
 ```sh
 $ make test
 ```
+
+## Run brain-calc
+
+[![Start...](asciinema/tmp8mdhvl5i-ascii.cast)](asciinema/tmp8mdhvl5i-ascii.cast)

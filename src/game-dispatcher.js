@@ -13,16 +13,16 @@ const findAction = (actionName, collActions) => {
   return null;
 };
 
-const getAction = (action, register) => {
+const getAction = (actionName, register) => {
   const gameActions = cdr(register);
   if (!gameActions) {
     throw new Error('Game register is empty');
   }
 
-  const func = findAction(action, gameActions);
+  const func = findAction(actionName, gameActions);
 
   if (func === null) {
-    throw new Error(`Unknown action '${action}'`);
+    throw new Error(`Unknown action '${actionName}'`);
   }
 
   return func;
