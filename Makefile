@@ -28,3 +28,5 @@ brain-gcd:
 brain-progression:
 	npx node bin/brain-progression.js
 
+brain-prime:
+	npx node bin/brain-prime.js

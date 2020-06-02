@@ -22,14 +22,27 @@ $ make install
 $ make test
 ```
 
+## Run brain-games 
+
+[![Start...](https://asciinema.org/a/QGqzJsWbZgsCglH4suNYYgxhw)](https://asciinema.org/a/QGqzJsWbZgsCglH4suNYYgxhw)
+
+## Run brain-even
+
+[![Start...](https://asciinema.org/a/qbA7Msagt8XsrL6lsEl0xbY44)](https://asciinema.org/a/qbA7Msagt8XsrL6lsEl0xbY44)
+
 ## Run brain-calc
 
-[![Start...](asciinema/tmp8mdhvl5i-ascii.cast)](asciinema/tmp8mdhvl5i-ascii.cast)
+[![Start...](https://asciinema.org/a/G9G2OKtMIPhbbpiRBfJIPIMNe)](https://asciinema.org/a/G9G2OKtMIPhbbpiRBfJIPIMNe)
 
 ## Run brain-gcd
 
-[![Start...](https://asciinema.org/a/skGTlWy728qg4Pnc8J3yoqyFH)](https://asciinema.org/a/skGTlWy728qg4Pnc8J3yoqyFH)
+[![Start...](https://asciinema.org/a/kBrQkc3VaJYyAWutjMX9c9ZVA)](https://asciinema.org/a/kBrQkc3VaJYyAWutjMX9c9ZVA)
+
+## Run brain-progression
+
+[![Start...](https://asciinema.org/a/aWDnkyBGHfVzjCXsYRmjyhhqP)](https://asciinema.org/a/aWDnkyBGHfVzjCXsYRmjyhhqP)
+
 
 ## Run brain-prime
 
-[![Start...](https://asciinema.org/a/E7qK0KhTqHWpuyZycXiOMGXyi)](https://asciinema.org/a/E7qK0KhTqHWpuyZycXiOMGXyi)
+[![Start...](https://asciinema.org/a/n9aNbqOTH8Dt03ASG27TNcpYy)](https://asciinema.org/a/n9aNbqOTH8Dt03ASG27TNcpYy)

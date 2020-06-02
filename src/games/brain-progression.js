@@ -1,5 +1,5 @@
 import { generateNumber } from '../number/number.js';
-import { getGameContainer } from '../game-api.js';
+import { getGameContainer } from '../game-container.js';
 
 const MAX_NUMBER = 100;
 const MAX_DIFFERENCE = 10;
@@ -20,16 +20,28 @@ const getQuestionText = () => (
   'What number is missing in the progression?'
 );
 
-const prepareQuestionPair = () => {
+const prepareSequence = () => {
   const startElem = generateNumber(MAX_NUMBER);
   const difference = generateNumber(MAX_DIFFERENCE);
-  const sequence = generateSequence(startElem, difference);
 
+  return generateSequence(startElem, difference);
+};
+
+const prepareAnswer = (sequence, hiddenElemIndex) => sequence[hiddenElemIndex];
+
+const prepareExpression = (sequence, hiddenElemIndex) => {
+  const expressionItems = [...sequence];
+  expressionItems[hiddenElemIndex] = '..';
+
+  return expressionItems.join(' ');
+};
+
+const prepareQuestionPair = () => {
+  const sequence = prepareSequence();
   const hiddenElemIndex = generateNumber(LENGTH_SEQUENCE);
 
-  const answer = sequence[hiddenElemIndex];
-  sequence[hiddenElemIndex] = '..';
-  const expression = sequence.join(' ');
+  const answer = prepareAnswer(sequence, hiddenElemIndex);
+  const expression = prepareExpression(sequence, hiddenElemIndex);
 
   return [expression, String(answer)];
 };

@@ -1,4 +1,4 @@
-import { getGameContainer } from '../game-api.js';
+import { getGameContainer } from '../game-container.js';
 import { generateNumber, isEven } from '../number/number.js';
 
 const ANSWER_YES = 'yes';

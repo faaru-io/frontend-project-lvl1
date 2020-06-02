@@ -1,10 +1,10 @@
 import readlineSync from 'readline-sync';
 import greeting from './cli.js';
-import { getQuestionText, getQuestionExpression, getCorrectAnswer } from './game-api.js';
+import { getQuestionText, getQuestionExpression, getCorrectAnswer } from './game-container.js';
 
 const SHOTS = 3;
-const STATUS_CORRECT = true;
-const STATUS_INCORRECT = false;
+const ANSWER_CORRECT = true;
+const ANSWER_WRONG = false;
 
 const success = () => console.log('Correct!');
 
@@ -20,12 +20,12 @@ const showQuestion = (gameContainer) => {
   console.log(`Question: ${questionExpression}`);
 };
 
-const getUserAnswer = () => (
+const getGamerAnswer = () => (
   readlineSync.question('Your answer:')
 );
 
 const checkAnswer = (correctAnswer, answer) => (
-  correctAnswer === answer ? STATUS_CORRECT : STATUS_INCORRECT
+  correctAnswer === answer ? ANSWER_CORRECT : ANSWER_WRONG
 );
 
 const play = (game, gamer) => {
@@ -34,10 +34,10 @@ const play = (game, gamer) => {
   showQuestion(gameContainer);
 
   const correctAnswer = getCorrectAnswer(gameContainer);
-  const gamerAnswer = getUserAnswer();
+  const gamerAnswer = getGamerAnswer();
   const status = checkAnswer(correctAnswer, gamerAnswer);
 
-  if (status === STATUS_CORRECT) {
+  if (status === ANSWER_CORRECT) {
     success();
   } else {
     gameOver(gamer, gamerAnswer, correctAnswer);
@@ -49,13 +49,13 @@ const play = (game, gamer) => {
 export default (game) => {
   const gamer = greeting();
   let shot = 1;
-  let status = STATUS_INCORRECT;
+  let status = ANSWER_WRONG;
   do {
     status = play(game, gamer);
     shot += 1;
-  } while (shot <= SHOTS && status === STATUS_CORRECT);
+  } while (shot <= SHOTS && status === ANSWER_CORRECT);
 
-  if (status === STATUS_CORRECT) {
+  if (status === ANSWER_CORRECT) {
     console.log(`Congratulations, ${gamer}!`);
   }
 };

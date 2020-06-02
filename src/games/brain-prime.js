@@ -1,4 +1,4 @@
-import { getGameContainer } from '../game-api.js';
+import { getGameContainer } from '../game-container.js';
 import { generateNumber } from '../number/number.js';
 
 const MAX_NUMBER = 100;
