@@ -29,3 +29,7 @@ $ make test
 ## Run brain-gcd
 
 [![Start...](https://asciinema.org/a/skGTlWy728qg4Pnc8J3yoqyFH)](https://asciinema.org/a/skGTlWy728qg4Pnc8J3yoqyFH)
+
+## Run brain-prime
+
+[![Start...](https://asciinema.org/a/E7qK0KhTqHWpuyZycXiOMGXyi)](https://asciinema.org/a/E7qK0KhTqHWpuyZycXiOMGXyi)
