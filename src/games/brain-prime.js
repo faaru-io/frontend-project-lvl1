@@ -6,8 +6,8 @@ const ANSWER_YES = 'yes';
 const ANSWER_NO = 'no';
 
 const isPrime = (number) => {
-  if (number >= 0 && number <= 3) {
-    return true;
+  if (number < 2) {
+    return false;
   }
 
   const maxDivisor = Math.floor(Math.sqrt(number));
