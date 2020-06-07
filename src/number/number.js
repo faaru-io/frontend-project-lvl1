@@ -1,5 +1,5 @@
-const generateNumber = (max) => Math.floor(Math.random() * Math.floor(max));
+const generateNumberBetween = (min, max) => (
+  Math.floor(Math.random() * (max - min + 1)) + min
+);
 
-const isEven = (number) => number % 2 === 0;
-
-export { generateNumber, isEven };
+export default generateNumberBetween;

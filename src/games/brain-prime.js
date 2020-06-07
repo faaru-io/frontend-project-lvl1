@@ -1,9 +1,10 @@
-import { getGameContainer } from '../game-container.js';
-import { generateNumber } from '../number/number.js';
+import generateNumberBetween from '../number/number.js';
 
-const MAX_NUMBER = 100;
+const FROM_NUMBER = 1;
+const TO_NUMBER = 100;
 const ANSWER_YES = 'yes';
 const ANSWER_NO = 'no';
+const QUESTION_TEXT = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (number) => {
   if (number < 2) {
@@ -20,12 +21,8 @@ const isPrime = (number) => {
   return true;
 };
 
-const getQuestionText = () => (
-  'Answer "yes" if given number is prime. Otherwise answer "no".'
-);
-
 const prepareQuestionPair = () => {
-  const number = generateNumber(MAX_NUMBER);
+  const number = generateNumberBetween(FROM_NUMBER, TO_NUMBER);
 
   const expression = `${number}`;
   const answer = isPrime(number) ? ANSWER_YES : ANSWER_NO;
@@ -33,8 +30,10 @@ const prepareQuestionPair = () => {
   return [expression, String(answer)];
 };
 
-export default () => {
+const generateRound = () => {
   const [expression, answer] = prepareQuestionPair();
-
-  return getGameContainer(getQuestionText(), expression, answer);
+  const question = [QUESTION_TEXT, expression];
+  return [question, answer];
 };
+
+export default generateRound;

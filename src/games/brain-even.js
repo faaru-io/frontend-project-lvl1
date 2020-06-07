@@ -1,25 +1,26 @@
-import { getGameContainer } from '../game-container.js';
-import { generateNumber, isEven } from '../number/number.js';
+import generateNumberBetween from '../number/number.js';
 
 const ANSWER_YES = 'yes';
 const ANSWER_NO = 'no';
-const MAX_NUMBER = 100;
+const FROM_NUMBER = 1;
+const TO_NUMBER = 100;
+const QUESTION_TEXT = 'Answer "yes" if the number is even, otherwise answer "no".';
+
+const isEven = (number) => (number % 2 === 0);
 
 const getCorrectAnswer = (number) => (isEven(number) ? ANSWER_YES : ANSWER_NO);
 
-const getQuestionText = () => (
-  'Answer "yes" if the number is even, otherwise answer "no".'
-);
-
 const prepareQuestionPair = () => {
-  const expression = generateNumber(MAX_NUMBER);
+  const expression = generateNumberBetween(FROM_NUMBER, TO_NUMBER);
   const answer = getCorrectAnswer(expression);
 
   return [expression, answer];
 };
 
-export default () => {
+const generateRound = () => {
   const [expression, answer] = prepareQuestionPair();
-
-  return getGameContainer(getQuestionText(), expression, answer);
+  const question = [QUESTION_TEXT, expression];
+  return [question, answer];
 };
+
+export default generateRound;

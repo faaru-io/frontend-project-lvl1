@@ -1,7 +1,8 @@
-import { getGameContainer } from '../game-container.js';
-import { generateNumber } from '../number/number.js';
+import generateNumberBetween from '../number/number.js';
 
-const MAX_NUMBER = 100;
+const FROM_NUMBER = 3;
+const TO_NUMBER = 100;
+const QUESTION_TEXT = 'Find the greatest common divisor of given numbers.';
 
 const calcGcd = (numberA, numberB) => {
   let a = numberA;
@@ -17,13 +18,9 @@ const calcGcd = (numberA, numberB) => {
   return a > b ? a : b;
 };
 
-const getQuestionText = () => (
-  'Find the greatest common divisor of given numbers.'
-);
-
 const prepareQuestionPair = () => {
-  const numberA = generateNumber(MAX_NUMBER);
-  const numberB = generateNumber(MAX_NUMBER);
+  const numberA = generateNumberBetween(FROM_NUMBER, TO_NUMBER);
+  const numberB = generateNumberBetween(FROM_NUMBER, TO_NUMBER);
 
   const expression = `${numberA} ${numberB}`;
   const answer = calcGcd(numberA, numberB);
@@ -31,8 +28,10 @@ const prepareQuestionPair = () => {
   return [expression, String(answer)];
 };
 
-export default () => {
+const generateRound = () => {
   const [expression, answer] = prepareQuestionPair();
-
-  return getGameContainer(getQuestionText(), expression, answer);
+  const question = [QUESTION_TEXT, expression];
+  return [question, answer];
 };
+
+export default generateRound;

@@ -1,10 +1,11 @@
-import { getGameContainer } from '../game-container.js';
-import { generateNumber } from '../number/number.js';
+import generateNumberBetween from '../number/number.js';
 
-const MAX_NUMBER = 100;
+const FROM_NUMBER = 0;
+const TO_NUMBER = 100;
+const QUESTION_TEXT = 'What is the result of the expression?';
 
 const getOperation = (collOperations) => {
-  const indexOperation = Math.floor(Math.random() * Math.floor(collOperations.length));
+  const indexOperation = generateNumberBetween(0, collOperations.length);
 
   return collOperations[indexOperation];
 };
@@ -23,13 +24,9 @@ const calc = (op, a, b) => {
   return null;
 };
 
-const getQuestionText = () => (
-  'What is the result of the expression?'
-);
-
 const prepareQuestionPair = () => {
-  const numberA = generateNumber(MAX_NUMBER);
-  const numberB = generateNumber(MAX_NUMBER);
+  const numberA = generateNumberBetween(FROM_NUMBER, TO_NUMBER);
+  const numberB = generateNumberBetween(FROM_NUMBER, TO_NUMBER);
   const op = getOperation(['+', '-', '*']);
 
   const expression = `${numberA} ${op} ${numberB}`;
@@ -38,8 +35,10 @@ const prepareQuestionPair = () => {
   return [expression, String(answer)];
 };
 
-export default () => {
+const generateRound = () => {
   const [expression, answer] = prepareQuestionPair();
-
-  return getGameContainer(getQuestionText(), expression, answer);
+  const question = [QUESTION_TEXT, expression];
+  return [question, answer];
 };
+
+export default generateRound;

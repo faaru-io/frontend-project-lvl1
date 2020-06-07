@@ -1,9 +1,11 @@
-import { generateNumber } from '../number/number.js';
-import { getGameContainer } from '../game-container.js';
+import generateNumberBetween from '../number/number.js';
 
-const MAX_NUMBER = 100;
+const FROM_NUMBER = 1;
+const TO_NUMBER = 100;
+const MIN_DIFFERENCE = 1;
 const MAX_DIFFERENCE = 10;
 const LENGTH_SEQUENCE = 10;
+const QUESTION_TEXT = 'What number is missing in the progression?';
 
 const generateSequence = (startElem, difference) => {
   let currentElem = startElem;
@@ -16,13 +18,9 @@ const generateSequence = (startElem, difference) => {
   return sequence;
 };
 
-const getQuestionText = () => (
-  'What number is missing in the progression?'
-);
-
 const prepareSequence = () => {
-  const startElem = generateNumber(MAX_NUMBER);
-  const difference = generateNumber(MAX_DIFFERENCE);
+  const startElem = generateNumberBetween(FROM_NUMBER, TO_NUMBER);
+  const difference = generateNumberBetween(MIN_DIFFERENCE, MAX_DIFFERENCE);
 
   return generateSequence(startElem, difference);
 };
@@ -38,7 +36,7 @@ const prepareExpression = (sequence, hiddenElemIndex) => {
 
 const prepareQuestionPair = () => {
   const sequence = prepareSequence();
-  const hiddenElemIndex = generateNumber(LENGTH_SEQUENCE);
+  const hiddenElemIndex = generateNumberBetween(0, LENGTH_SEQUENCE);
 
   const answer = prepareAnswer(sequence, hiddenElemIndex);
   const expression = prepareExpression(sequence, hiddenElemIndex);
@@ -46,8 +44,10 @@ const prepareQuestionPair = () => {
   return [expression, String(answer)];
 };
 
-export default () => {
+const generateRound = () => {
   const [expression, answer] = prepareQuestionPair();
-
-  return getGameContainer(getQuestionText(), expression, answer);
+  const question = [QUESTION_TEXT, expression];
+  return [question, answer];
 };
+
+export default generateRound;

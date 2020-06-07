@@ -2,9 +2,7 @@
 
 # https://eslint.org/docs/user-guide/configuring#specifying-environments
 env:
-  browser: false
   node: true
-  jest: true
 
 extends:
   - 'airbnb-base'

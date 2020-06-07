@@ -1,6 +1,5 @@
 import readlineSync from 'readline-sync';
 import greeting from './cli.js';
-import { getQuestionText, getQuestionExpression, getCorrectAnswer } from './game-container.js';
 
 const SHOTS = 3;
 const ANSWER_CORRECT = true;
@@ -13,9 +12,7 @@ const gameOver = (name, answer, correct) => {
   console.log(`Let's try again, ${name}!`);
 };
 
-const showQuestion = (gameContainer) => {
-  const questionText = getQuestionText(gameContainer);
-  const questionExpression = getQuestionExpression(gameContainer);
+const showQuestion = ([questionText, questionExpression]) => {
   console.log(questionText);
   console.log(`Question: ${questionExpression}`);
 };
@@ -29,11 +26,10 @@ const checkAnswer = (correctAnswer, answer) => (
 );
 
 const play = (game, gamer) => {
-  const gameContainer = game();
+  const [question, correctAnswer] = game();
 
-  showQuestion(gameContainer);
+  showQuestion(question);
 
-  const correctAnswer = getCorrectAnswer(gameContainer);
   const gamerAnswer = getGamerAnswer();
   const status = checkAnswer(correctAnswer, gamerAnswer);
 
