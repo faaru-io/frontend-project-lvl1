@@ -1,57 +1,34 @@
 import readlineSync from 'readline-sync';
-import greeting from './cli.js';
 
-const SHOTS = 3;
-const ANSWER_CORRECT = true;
-const ANSWER_WRONG = false;
+const steps = 3;
 
-const success = () => console.log('Correct!');
+export default (gameDescription, generateRoundFunc) => {
+  console.log('Welcome to the Brain Games!');
+  const name = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${name}!`);
 
-const gameOver = (name, answer, correct) => {
-  console.log(`"${answer}" is wrong answer ;(. Correct answer was "${correct}".`);
-  console.log(`Let's try again, ${name}!`);
-};
-
-const showQuestion = ([questionText, questionExpression]) => {
-  console.log(questionText);
-  console.log(`Question: ${questionExpression}`);
-};
-
-const getGamerAnswer = () => (
-  readlineSync.question('Your answer:')
-);
-
-const checkAnswer = (correctAnswer, answer) => (
-  correctAnswer === answer ? ANSWER_CORRECT : ANSWER_WRONG
-);
-
-const play = (game, gamer) => {
-  const [question, correctAnswer] = game();
-
-  showQuestion(question);
-
-  const gamerAnswer = getGamerAnswer();
-  const status = checkAnswer(correctAnswer, gamerAnswer);
-
-  if (status === ANSWER_CORRECT) {
-    success();
-  } else {
-    gameOver(gamer, gamerAnswer, correctAnswer);
-  }
-
-  return status;
-};
-
-export default (game) => {
-  const gamer = greeting();
-  let shot = 1;
-  let status = ANSWER_WRONG;
+  let step = 1;
+  let result;
   do {
-    status = play(game, gamer);
-    shot += 1;
-  } while (shot <= SHOTS && status === ANSWER_CORRECT);
+    const [question, correctAnswer] = generateRoundFunc();
+    console.log(gameDescription);
+    console.log(`Question: ${question}`);
+    const gamerAnswer = readlineSync.question('Your answer:');
 
-  if (status === ANSWER_CORRECT) {
-    console.log(`Congratulations, ${gamer}!`);
+    result = gamerAnswer === correctAnswer;
+
+    if (result) {
+      console.log('Correct!');
+    } else {
+      console.log(`"${gamerAnswer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`);
+    }
+
+    step += 1;
+  } while (step <= steps && result);
+
+  if (result) {
+    console.log(`Congratulations, ${name}!`);
+  } else {
+    console.log(`Let's try again, ${name}!`);
   }
 };

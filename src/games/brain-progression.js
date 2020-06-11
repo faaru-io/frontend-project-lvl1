@@ -1,53 +1,38 @@
-import generateNumberBetween from '../number/number.js';
+import generateNumber from '../number.js';
 
-const FROM_NUMBER = 1;
-const TO_NUMBER = 100;
-const MIN_DIFFERENCE = 1;
-const MAX_DIFFERENCE = 10;
-const LENGTH_SEQUENCE = 10;
-const QUESTION_TEXT = 'What number is missing in the progression?';
+const min = 1;
+const max = 100;
+const minDifference = 1;
+const maxDifference = 10;
+const lengthSequence = 10;
+const gameDescription = 'What number is missing in the progression?';
 
-const generateSequence = (startElem, difference) => {
-  let currentElem = startElem;
-  const sequence = [startElem];
-  for (let i = 1; i < LENGTH_SEQUENCE; i += 1) {
-    currentElem = sequence[i - 1];
-    sequence.push(currentElem + difference);
+const generateSequence = (startElem, diff) => {
+  const sequence = [];
+  for (let i = 0; i < lengthSequence; i += 1) {
+    sequence.push(startElem + diff * i);
   }
 
   return sequence;
 };
 
-const prepareSequence = () => {
-  const startElem = generateNumberBetween(FROM_NUMBER, TO_NUMBER);
-  const difference = generateNumberBetween(MIN_DIFFERENCE, MAX_DIFFERENCE);
-
-  return generateSequence(startElem, difference);
-};
-
-const prepareAnswer = (sequence, hiddenElemIndex) => sequence[hiddenElemIndex];
-
-const prepareExpression = (sequence, hiddenElemIndex) => {
+const prepareQuestion = (sequence, hiddenElemIndex) => {
   const expressionItems = [...sequence];
   expressionItems[hiddenElemIndex] = '..';
 
   return expressionItems.join(' ');
 };
 
-const prepareQuestionPair = () => {
-  const sequence = prepareSequence();
-  const hiddenElemIndex = generateNumberBetween(0, LENGTH_SEQUENCE);
-
-  const answer = prepareAnswer(sequence, hiddenElemIndex);
-  const expression = prepareExpression(sequence, hiddenElemIndex);
-
-  return [expression, String(answer)];
-};
-
 const generateRound = () => {
-  const [expression, answer] = prepareQuestionPair();
-  const question = [QUESTION_TEXT, expression];
-  return [question, answer];
+  const startElem = generateNumber(min, max);
+  const difference = generateNumber(minDifference, maxDifference);
+  const sequence = generateSequence(startElem, difference);
+  const hiddenElemIndex = generateNumber(0, lengthSequence);
+
+  const question = prepareQuestion(sequence, hiddenElemIndex);
+  const answer = sequence[hiddenElemIndex];
+
+  return [question, String(answer)];
 };
 
-export default generateRound;
+export { gameDescription, generateRound };

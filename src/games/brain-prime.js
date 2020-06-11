@@ -1,10 +1,8 @@
-import generateNumberBetween from '../number/number.js';
+import generateNumber from '../number.js';
 
-const FROM_NUMBER = 1;
-const TO_NUMBER = 100;
-const ANSWER_YES = 'yes';
-const ANSWER_NO = 'no';
-const QUESTION_TEXT = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+const min = 1;
+const max = 100;
+const gameDescription = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (number) => {
   if (number < 2) {
@@ -21,19 +19,13 @@ const isPrime = (number) => {
   return true;
 };
 
-const prepareQuestionPair = () => {
-  const number = generateNumberBetween(FROM_NUMBER, TO_NUMBER);
-
-  const expression = `${number}`;
-  const answer = isPrime(number) ? ANSWER_YES : ANSWER_NO;
-
-  return [expression, String(answer)];
-};
-
 const generateRound = () => {
-  const [expression, answer] = prepareQuestionPair();
-  const question = [QUESTION_TEXT, expression];
+  const number = generateNumber(min, max);
+
+  const question = `${number}`;
+  const answer = isPrime(number) ? 'yes' : 'no';
+
   return [question, answer];
 };
 
-export default generateRound;
+export { gameDescription, generateRound };

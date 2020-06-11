@@ -11,10 +11,6 @@
 $ make install
 ```
 
-## Run brain-games 
-
-[![Start...](https://asciinema.org/a/QGqzJsWbZgsCglH4suNYYgxhw)](https://asciinema.org/a/QGqzJsWbZgsCglH4suNYYgxhw)
-
 ## Run brain-even
 
 [![Start...](https://asciinema.org/a/qbA7Msagt8XsrL6lsEl0xbY44)](https://asciinema.org/a/qbA7Msagt8XsrL6lsEl0xbY44)

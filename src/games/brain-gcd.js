@@ -1,8 +1,8 @@
-import generateNumberBetween from '../number/number.js';
+import generateNumber from '../number.js';
 
-const FROM_NUMBER = 3;
-const TO_NUMBER = 100;
-const QUESTION_TEXT = 'Find the greatest common divisor of given numbers.';
+const min = 3;
+const max = 100;
+const gameDescription = 'Find the greatest common divisor of given numbers.';
 
 const calcGcd = (numberA, numberB) => {
   let a = numberA;
@@ -18,20 +18,14 @@ const calcGcd = (numberA, numberB) => {
   return a > b ? a : b;
 };
 
-const prepareQuestionPair = () => {
-  const numberA = generateNumberBetween(FROM_NUMBER, TO_NUMBER);
-  const numberB = generateNumberBetween(FROM_NUMBER, TO_NUMBER);
+const generateRound = () => {
+  const numberA = generateNumber(min, max);
+  const numberB = generateNumber(min, max);
 
-  const expression = `${numberA} ${numberB}`;
+  const question = `${numberA} ${numberB}`;
   const answer = calcGcd(numberA, numberB);
 
-  return [expression, String(answer)];
+  return [question, String(answer)];
 };
 
-const generateRound = () => {
-  const [expression, answer] = prepareQuestionPair();
-  const question = [QUESTION_TEXT, expression];
-  return [question, answer];
-};
-
-export default generateRound;
+export { gameDescription, generateRound };

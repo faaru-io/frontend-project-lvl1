@@ -1,44 +1,36 @@
-import generateNumberBetween from '../number/number.js';
+import generateNumber from '../number.js';
 
-const FROM_NUMBER = 0;
-const TO_NUMBER = 100;
-const QUESTION_TEXT = 'What is the result of the expression?';
+const min = 0;
+const max = 100;
+const gameDescription = 'What is the result of the expression?';
+
+const plus = (a, b) => a + b;
+const minus = (a, b) => a - b;
+const mul = (a, b) => a * b;
+
+const operations = [
+  ['+', plus],
+  ['-', minus],
+  ['*', mul],
+];
 
 const getOperation = (collOperations) => {
-  const indexOperation = generateNumberBetween(0, collOperations.length);
+  const indexOperation = generateNumber(0, collOperations.length);
 
   return collOperations[indexOperation];
 };
 
-const calc = (op, a, b) => {
-  switch (op) {
-    case '+':
-      return a + b;
-    case '-':
-      return a - b;
-    case '*':
-      return a * b;
-    default:
-  }
-
-  return null;
-};
-
-const prepareQuestionPair = () => {
-  const numberA = generateNumberBetween(FROM_NUMBER, TO_NUMBER);
-  const numberB = generateNumberBetween(FROM_NUMBER, TO_NUMBER);
-  const op = getOperation(['+', '-', '*']);
-
-  const expression = `${numberA} ${op} ${numberB}`;
-  const answer = calc(op, numberA, numberB);
-
-  return [expression, String(answer)];
-};
+const calc = (op, a, b) => op(a, b);
 
 const generateRound = () => {
-  const [expression, answer] = prepareQuestionPair();
-  const question = [QUESTION_TEXT, expression];
-  return [question, answer];
+  const numberA = generateNumber(min, max);
+  const numberB = generateNumber(min, max);
+  const [sign, op] = getOperation(operations);
+
+  const question = `${numberA} ${sign} ${numberB}`;
+  const answer = calc(op, numberA, numberB);
+
+  return [question, String(answer)];
 };
 
-export default generateRound;
+export { gameDescription, generateRound };
