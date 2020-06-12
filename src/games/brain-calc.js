@@ -20,15 +20,13 @@ const getOperation = (collOperations) => {
   return collOperations[indexOperation];
 };
 
-const calc = (op, a, b) => op(a, b);
-
 const generateRound = () => {
   const numberA = generateNumber(min, max);
   const numberB = generateNumber(min, max);
   const [sign, op] = getOperation(operations);
 
   const question = `${numberA} ${sign} ${numberB}`;
-  const answer = calc(op, numberA, numberB);
+  const answer = op(numberA, numberB);
 
   return [question, String(answer)];
 };
