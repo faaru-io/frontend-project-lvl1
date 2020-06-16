@@ -27,7 +27,7 @@ const generateRound = () => {
   const startElem = generateNumber(min, max);
   const difference = generateNumber(minDifference, maxDifference);
   const sequence = generateSequence(startElem, difference);
-  const hiddenElemIndex = generateNumber(0, lengthSequence);
+  const hiddenElemIndex = generateNumber(0, lengthSequence - 1);
 
   const question = prepareQuestion(sequence, hiddenElemIndex);
   const answer = sequence[hiddenElemIndex];
@@ -35,4 +35,4 @@ const generateRound = () => {
   return [question, String(answer)];
 };
 
-export { gameDescription, generateRound };
+export default () => [gameDescription, generateRound];

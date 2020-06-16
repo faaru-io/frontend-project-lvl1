@@ -26,4 +26,4 @@ const generateRound = () => {
   return [question, String(answer)];
 };
 
-export { gameDescription, generateRound };
+export default () => [gameDescription, generateRound];

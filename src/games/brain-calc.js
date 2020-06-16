@@ -4,18 +4,14 @@ const min = 0;
 const max = 100;
 const gameDescription = 'What is the result of the expression?';
 
-const plus = (a, b) => a + b;
-const minus = (a, b) => a - b;
-const mul = (a, b) => a * b;
-
 const operations = [
-  ['+', plus],
-  ['-', minus],
-  ['*', mul],
+  ['+', (a, b) => a + b],
+  ['-', (a, b) => a - b],
+  ['*', (a, b) => a * b],
 ];
 
 const getOperation = (collOperations) => {
-  const indexOperation = generateNumber(0, collOperations.length);
+  const indexOperation = generateNumber(0, collOperations.length - 1);
 
   return collOperations[indexOperation];
 };
@@ -31,4 +27,4 @@ const generateRound = () => {
   return [question, String(answer)];
 };
 
-export { gameDescription, generateRound };
+export default () => [gameDescription, generateRound];

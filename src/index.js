@@ -1,16 +1,18 @@
 import readlineSync from 'readline-sync';
 
-const steps = 3;
+const stepCount = 3;
 
-export default (gameDescription, generateRoundFunc) => {
+export default (game) => {
   console.log('Welcome to the Brain Games!');
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
 
+  const [gameDescription, generateRound] = game();
+
   let step = 1;
   let result;
   do {
-    const [question, correctAnswer] = generateRoundFunc();
+    const [question, correctAnswer] = generateRound();
     console.log(gameDescription);
     console.log(`Question: ${question}`);
     const gamerAnswer = readlineSync.question('Your answer:');
@@ -24,7 +26,7 @@ export default (gameDescription, generateRoundFunc) => {
     }
 
     step += 1;
-  } while (step <= steps && result);
+  } while (step <= stepCount && result);
 
   if (result) {
     console.log(`Congratulations, ${name}!`);
