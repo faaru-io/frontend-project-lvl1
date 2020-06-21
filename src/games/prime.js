@@ -1,4 +1,4 @@
-import generateNumber from '../number.js';
+import generateNumberInRange from '../random.js';
 
 const min = 1;
 const max = 100;
@@ -20,9 +20,9 @@ const isPrime = (number) => {
 };
 
 const generateRound = () => {
-  const number = generateNumber(min, max);
+  const number = generateNumberInRange(min, max);
 
-  const question = `${number}`;
+  const question = String(number);
   const answer = isPrime(number) ? 'yes' : 'no';
 
   return [question, answer];

@@ -1,10 +1,10 @@
-import generateNumber from '../number.js';
+import generateNumberInRange from '../random.js';
 
 const min = 3;
 const max = 100;
 const gameDescription = 'Find the greatest common divisor of given numbers.';
 
-const calcGcd = (numberA, numberB) => {
+const calculateGcd = (numberA, numberB) => {
   let a = numberA;
   let b = numberB;
   while (b) {
@@ -17,11 +17,11 @@ const calcGcd = (numberA, numberB) => {
 };
 
 const generateRound = () => {
-  const numberA = generateNumber(min, max);
-  const numberB = generateNumber(min, max);
+  const numberA = generateNumberInRange(min, max);
+  const numberB = generateNumberInRange(min, max);
 
   const question = `${numberA} ${numberB}`;
-  const answer = calcGcd(numberA, numberB);
+  const answer = calculateGcd(numberA, numberB);
 
   return [question, String(answer)];
 };

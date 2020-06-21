@@ -1,6 +1,6 @@
 import readlineSync from 'readline-sync';
 
-const stepCount = 3;
+const roundsCount = 3;
 
 export default (game) => {
   console.log('Welcome to the Brain Games!');
@@ -9,28 +9,22 @@ export default (game) => {
 
   const [gameDescription, generateRound] = game();
 
-  let step = 1;
-  let result;
+  let counter = roundsCount;
   do {
     const [question, correctAnswer] = generateRound();
     console.log(gameDescription);
     console.log(`Question: ${question}`);
     const gamerAnswer = readlineSync.question('Your answer:');
 
-    result = gamerAnswer === correctAnswer;
-
-    if (result) {
-      console.log('Correct!');
-    } else {
+    if (gamerAnswer !== correctAnswer) {
       console.log(`"${gamerAnswer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`);
+      console.log(`Let's try again, ${name}!`);
+      return;
     }
 
-    step += 1;
-  } while (step <= stepCount && result);
+    console.log('Correct!');
+    counter -= 1;
+  } while (counter > 0);
 
-  if (result) {
-    console.log(`Congratulations, ${name}!`);
-  } else {
-    console.log(`Let's try again, ${name}!`);
-  }
+  console.log(`Congratulations, ${name}!`);
 };
