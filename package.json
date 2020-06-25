@@ -1,6 +1,6 @@
 {
   "name": "faaru-frontend-project-lvl1",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "description": "project level 1 - js",
   "main": "src/index.js",
   "type": "module",
